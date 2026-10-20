@@ -1,0 +1,18 @@
+.vercel
+
+# not used by the page
+assets/video/
+assets/img/field-1.webp
+assets/img/field-4.webp
+assets/img/field-11.webp
+assets/img/field-20.webp
+assets/img/field-23.webp
+assets/img/field-27.webp
+assets/img/field-33.webp
+assets/img/retrux-logo-text.png
+
+# local working files
+brief.md
+ref/
+versions/
+.DS_Store
