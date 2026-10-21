@@ -116,7 +116,7 @@
   .collage .mark { position: absolute; right: 6%; bottom: 8%; width: 40%; height: auto; opacity: .95; }
 
   .grid-2, .grid-4 { display: grid; gap: var(--gap); }
-  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-2 { grid-template-columns: 1fr; row-gap: 56px; }
   .grid-4 { grid-template-columns: 1fr 1fr; row-gap: 32px; }
 
   .captioned { text-align: center; }
@@ -258,6 +258,7 @@
     .collage .p2 { right: 5%; top: 10%; width: 22%; }
     .collage .p3 { left: 30%; bottom: 8%; width: 24%; }
     .collage .mark { width: 30%; right: 5%; bottom: 10%; }
+    .grid-2 { grid-template-columns: 1fr 1fr; }
     .grid-4 { grid-template-columns: repeat(4, 1fr); }
     .ideas { grid-template-columns: repeat(3, 1fr); gap: 40px; }
     .marquee b { margin: 0 48px; }
