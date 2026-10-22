@@ -1,9 +1,10 @@
 // Calm, positive background sound, made live with the Web Audio API (no audio file to download).
-// A slow pad walks through four warm chords in D major, with a few soft bell notes on top.
+// A slow pad walks through four warm chords, with a few soft bell notes on top.
 
-const hz = (n) => 440 * Math.pow(2, (n - 69) / 12);   // MIDI note to frequency
+const TRANSPOSE = -5;                                  // D major moved down to A major, lower and warmer
+const hz = (n) => 440 * Math.pow(2, (n + TRANSPOSE - 69) / 12);   // MIDI note to frequency
 
-// Dmaj9 → Bm11 → Gmaj9 → Asus, eight seconds each
+// I maj9 → vi 11 → IV maj9 → V sus, eight seconds each (written in D, played in A)
 const CHORDS = [
   [50, 57, 61, 64, 66],
   [47, 54, 57, 62, 64],
@@ -39,9 +40,9 @@ export function createAmbient() {
 
   // The pad breathes: a slow filter sweep shared by every voice
   const tone = ctx.createBiquadFilter();
-  tone.type = 'lowpass'; tone.frequency.value = 900; tone.Q.value = 0.4;
+  tone.type = 'lowpass'; tone.frequency.value = 760; tone.Q.value = 0.4;
   const lfo = ctx.createOscillator(); lfo.frequency.value = 0.05;
-  const lfoAmt = ctx.createGain(); lfoAmt.gain.value = 380;
+  const lfoAmt = ctx.createGain(); lfoAmt.gain.value = 320;
   lfo.connect(lfoAmt).connect(tone.frequency); lfo.start();
   tone.connect(dry); tone.connect(verb);
 
@@ -73,7 +74,7 @@ export function createAmbient() {
   }
 
   // Look ahead a little and book the next chord and its bells
-  let next = 0, step = 0, timer = null;
+  let next = 0, step = 0, timer = null, wanted = false;
   function schedule() {
     while (next < ctx.currentTime + 1) {
       pad(CHORDS[step % CHORDS.length], next);
@@ -87,18 +88,22 @@ export function createAmbient() {
 
   return {
     async play() {
-      await ctx.resume();
+      wanted = true;
+      await ctx.resume().catch(() => {});
+      if (!wanted) return false;            // switched off while the browser was still holding the sound back
       if (!timer) { next = ctx.currentTime + 0.1; schedule(); timer = setInterval(schedule, 250); }
       master.gain.cancelScheduledValues(ctx.currentTime);
       master.gain.setValueAtTime(master.gain.value, ctx.currentTime);
       master.gain.linearRampToValueAtTime(VOLUME, ctx.currentTime + 3);
+      return ctx.state === 'running';
     },
     pause() {
+      wanted = false;
       master.gain.cancelScheduledValues(ctx.currentTime);
       master.gain.setValueAtTime(master.gain.value, ctx.currentTime);
       master.gain.linearRampToValueAtTime(0, ctx.currentTime + 1.2);
       setTimeout(() => {
-        if (master.gain.value > 0.001) return;   // turned back on during the fade
+        if (wanted) return;                      // turned back on during the fade
         clearInterval(timer); timer = null;
         ctx.suspend();
       }, 1400);

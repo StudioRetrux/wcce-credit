@@ -630,31 +630,38 @@
     io3.observe(stage);
   })();
 
-  // Background sound: a calm ambient pad made live in the browser, off until the visitor asks for it
+  // Background sound: a calm ambient pad made live in the browser. On by default; the visitor can switch it off
   (() => {
     const btn = document.getElementById('sound');
-    let amb = null, on = false;
     const KEY = 'wcce-sound';
+    const GESTURES = ['pointerdown', 'keydown', 'touchend'];
+    let amb = null, on = false;
     const store = (v) => { try { localStorage.setItem(KEY, v); } catch (_) {} };
-    function set(next) {
+    const engine = async () => amb || (amb = (await import('./assets/js/ambient.js')).createAmbient());
+    function show(next) {
       on = next;
       btn.classList.toggle('on', on);
       btn.setAttribute('aria-pressed', on);
       btn.setAttribute('aria-label', on ? 'Turn background sound off' : 'Turn background sound on');
       btn.title = on ? 'Sound off' : 'Sound on';
     }
-    async function toggle() {
-      set(!on); store(on ? 'on' : 'off');
-      if (!amb) amb = (await import('./assets/js/ambient.js')).createAmbient();
-      on ? amb.play() : amb.pause();
-    }
-    btn.addEventListener('click', toggle);
-    // Browsers block sound until a gesture, so a returning visitor who left it on hears it after their first tap or key
-    let pref = 'off'; try { pref = localStorage.getItem(KEY) || 'off'; } catch (_) {}
+    btn.addEventListener('click', async () => {
+      show(!on); store(on ? 'on' : 'off'); stopWaiting();
+      const a = await engine(); on ? a.play() : a.pause();
+    });
+
+    // Browsers only allow sound after a click, tap or key press, so try now and otherwise start on the first one
+    const kick = async (e) => {
+      if (e && e.target.closest && e.target.closest('#sound')) return;
+      const a = amb || await engine();     // loaded on page open, so a tap can start it straight away
+      if (await a.play()) stopWaiting();
+    };
+    const stopWaiting = () => GESTURES.forEach((t) => removeEventListener(t, kick, true));
+    let pref = 'on'; try { pref = localStorage.getItem(KEY) || 'on'; } catch (_) {}
     if (pref === 'on') {
-      const resume = (e) => { if (e.target.closest && e.target.closest('#sound')) return; if (!on) toggle(); off(); };
-      const off = () => ['pointerdown', 'keydown'].forEach((t) => removeEventListener(t, resume, true));
-      ['pointerdown', 'keydown'].forEach((t) => addEventListener(t, resume, true));
+      show(true);
+      GESTURES.forEach((t) => addEventListener(t, kick, true));
+      kick();
     }
   })();
 
