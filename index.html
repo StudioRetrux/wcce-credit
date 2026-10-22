@@ -189,14 +189,6 @@
     .flow li:not(:last-child)::after { content: "→"; position: absolute; right: -44px; top: 40%; font: 400 24px/1 var(--font); color: var(--dim); }
   }
 
-  /* At a glance: the 5W+1H as plain facts, label left, answer right */
-  .glance { margin-top: 48px; border-bottom: 1px solid var(--line); }
-  .glance div { display: grid; grid-template-columns: 72px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
-  .glance dt { font: 500 var(--t-label)/2 var(--font); letter-spacing: .08em; color: var(--dim); }
-  .glance dd { font: 500 var(--t-h3)/1.4 var(--font); letter-spacing: -.01em; color: var(--text); }
-  .glance small a { color: var(--soft); border-bottom: 1px solid var(--line); }
-  .glance small { display: block; margin-top: 4px; font: 400 var(--t-label)/1.5 var(--font); letter-spacing: 0; color: var(--muted); }
-
   /* What makes it different */
   .usp { list-style: none; display: grid; margin-top: 64px; counter-reset: usp; }
   .usp li { display: grid; grid-template-columns: 40px 1fr; gap: 0 16px; padding: 24px 0; border-top: 1px solid var(--line); counter-increment: usp; align-content: start; }
@@ -304,7 +296,6 @@
     .grid-2 { grid-template-columns: 1fr 1fr; }
     .grid-4 { grid-template-columns: repeat(4, 1fr); }
     .ideas { grid-template-columns: repeat(3, 1fr); gap: 40px; }
-    .glance div { grid-template-columns: 1fr 3fr; gap: 40px; padding: 20px 0; }
     .usp { grid-template-columns: 1fr 1fr; column-gap: 40px; }
     .marquee b { margin: 0 48px; }
     .acts { height: 340svh; }
@@ -363,21 +354,11 @@
   </div>
 
   <section class="wrap section">
-    <p class="label reveal">At a glance</p>
-    <h2 class="reveal what-head" style="margin-top:24px">The facts, <span class="dim">in one look.</span></h2>
-    <dl class="glance reveal">
-      <div><dt>WHAT</dt><dd>Interactive LED installation</dd></div>
-      <div><dt>WHO</dt><dd>By Retrux, for every WCCE 2026 visitor</dd></div>
-      <div><dt>WHEN</dt><dd>21 to 25 Oct 2026<small>Kempinski 21 to 23 Oct · SCBD 21 to 25 Oct</small></dd></div>
-      <div><dt>WHERE</dt><dd>Hotel Indonesia Kempinski<br>ASHTA District 8, SCBD<small>Jakarta, Indonesia</small></dd></div>
-      <div><dt>WHY</dt><dd>Creativity starts in a person</dd></div>
-      <div><dt>HOW</dt><dd>Walk up and move. Free entry.<small><a href="https://wcce.id/registration" target="_blank" rel="noopener">Register at wcce.id/registration</a></small></dd></div>
-    </dl>
-  </section>
-
-  <section class="wrap section">
     <p class="label reveal">What it is</p>
-    <h2 class="reveal what-head" style="margin-top:24px">A wall of light <span class="dim">that watches you move.</span></h2>
+    <div class="split reveal" style="margin-top:24px">
+      <h2 class="what-head">A wall of light <span class="dim">that watches you move.</span></h2>
+      <p>An interactive LED installation by Retrux for WCCE 2026, the 5th World Conference on Creative Economy. Open to every visitor, free.</p>
+    </div>
     <ol class="flow">
       <li class="reveal"><span class="flow-n">01</span><div class="media r-4x5"><img src="assets/img/place-scbd.webp" alt="A visitor walks through the glowing LED corridor at SCBD" loading="lazy" style="object-position:50% 50%"></div><h3>You step in</h3><p>Walk up to the wall. No app, no controller.</p></li>
       <li class="reveal" style="--d:100ms"><span class="flow-n">02</span><div class="media r-4x5"><img src="assets/img/place-kempinski.webp" alt="A visitor in front of the wall at Kempinski" loading="lazy" style="object-position:50% 50%"></div><h3>A camera reads you</h3><p>Body tracking finds where you stand and how you move.</p></li>
@@ -389,7 +370,7 @@
     <p class="label reveal">Why we made it</p>
     <div class="split reveal" style="margin-top:24px">
       <h2 class="idea-head"><span class="dim">A machine can make an image.</span> Only you can make a moment.</h2>
-      <p>WCCE 2026, the 5th World Conference on Creative Economy, brings creative minds from 80 nations to Jakarta under one theme: Inclusively Creative, Collective Continuity. We took it literally. Hundreds of blades sleep until someone steps in, then the whole field turns to follow them. The more people join, the more it gives back.</p>
+      <p>WCCE 2026 brings creative minds from 80 nations to Jakarta under one theme: Inclusively Creative, Collective Continuity. We took it literally. Hundreds of blades sleep until someone steps in, then the whole field turns to follow them. The more people join, the more it gives back.</p>
     </div>
   </section>
 
