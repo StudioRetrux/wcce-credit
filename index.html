@@ -197,8 +197,18 @@
   .usp p { margin-top: 4px; color: var(--muted); }
   .usp .tie { margin-top: 8px; font-size: var(--t-label); color: var(--dim); }
 
-  .visit { margin-top: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
-  .visit p { color: var(--muted); font-size: var(--t-label); }
+
+  /* Sound toggle: a quiet round button, bars move while music plays */
+  .sound { position: fixed; right: calc(var(--gutter) / 2 + 4px); bottom: calc(20px + env(safe-area-inset-bottom)); z-index: 20; width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: rgba(12, 11, 16, .72); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: var(--text); cursor: pointer; transition: border-color .3s, background .3s; }
+  .sound:hover { border-color: rgba(255, 255, 255, .32); }
+  .sound:focus-visible { outline: 2px solid var(--retrux); outline-offset: 2px; }
+  .sound-bars { display: flex; align-items: center; gap: 3px; height: 16px; }
+  .sound-bars i { width: 2px; height: 2px; border-radius: 2px; background: currentColor; transition: height .4s var(--ease); }
+  .sound.on .sound-bars i { animation: bar 1.2s ease-in-out infinite; }
+  .sound.on .sound-bars i:nth-child(2) { animation-delay: -.4s; }
+  .sound.on .sound-bars i:nth-child(3) { animation-delay: -.8s; }
+  .sound.on .sound-bars i:nth-child(4) { animation-delay: -.2s; }
+  @keyframes bar { 0%, 100% { height: 4px; } 50% { height: 16px; } }
 
   /* Chapter labels */
   .label { font: 400 var(--t-label)/1.5 var(--font); color: var(--dim); }
@@ -320,6 +330,7 @@
     .panel-media { aspect-ratio: 4 / 3; }
     .dots { display: none; }
     .marquee-track { animation: none; }
+    .sound.on .sound-bars i { animation: none; height: 12px; }
     .reveal, .media.reveal > img, .media.reveal > video, .collage.reveal .bg img { opacity: 1; transform: none; transition: none; }
     .words .w > span, .collage .piece, .collage .mark { transform: none; opacity: 1; transition: none; }
     .media.reveal { clip-path: none; transition: none; }
@@ -354,20 +365,20 @@
   </div>
 
   <section class="wrap section">
-    <p class="label reveal">What it is</p>
+    <p class="label reveal">Say hello to the Realm</p>
     <div class="split reveal" style="margin-top:24px">
       <h2 class="what-head">A wall of light <span class="dim">that watches you move.</span></h2>
       <p>An interactive LED installation by Retrux for WCCE 2026, the 5th World Conference on Creative Economy. Open to every visitor, free.</p>
     </div>
     <ol class="flow">
-      <li class="reveal"><span class="flow-n">01</span><div class="media r-4x5"><img src="assets/img/place-scbd.webp" alt="A visitor walks through the glowing LED corridor at SCBD" loading="lazy" style="object-position:50% 50%"></div><h3>You step in</h3><p>Walk up to the wall. No app, no controller.</p></li>
+      <li class="reveal"><span class="flow-n">01</span><div class="media r-4x5"><img src="assets/img/what-step-in.webp" alt="A visitor stands in front of the LED wall at SCBD" loading="lazy" style="object-position:84% 50%"></div><h3>You step in</h3><p>Walk up to the wall. No app, no controller.</p></li>
       <li class="reveal" style="--d:100ms"><span class="flow-n">02</span><div class="media r-4x5"><img src="assets/img/place-kempinski.webp" alt="A visitor in front of the wall at Kempinski" loading="lazy" style="object-position:50% 50%"></div><h3>A camera reads you</h3><p>Body tracking finds where you stand and how you move.</p></li>
       <li class="reveal" style="--d:200ms"><span class="flow-n">03</span><div class="media r-4x5"><img src="assets/img/still-blades.webp" alt="A close view of the 3D blades" loading="lazy"></div><h3>The wall answers</h3><p>3D blades, drawn live, rise and turn to follow you.</p></li>
     </ol>
   </section>
 
   <section class="wrap section">
-    <p class="label reveal">Why we made it</p>
+    <p class="label reveal">The idea behind it</p>
     <div class="split reveal" style="margin-top:24px">
       <h2 class="idea-head"><span class="dim">A machine can make an image.</span> Only you can make a moment.</h2>
       <p>WCCE 2026 brings creative minds from 80 nations to Jakarta under one theme: Inclusively Creative, Collective Continuity. We took it literally. Hundreds of blades sleep until someone steps in, then the whole field turns to follow them. The more people join, the more it gives back.</p>
@@ -387,7 +398,7 @@
   <section id="acts" class="acts">
     <div class="acts-sticky">
       <div class="wrap acts-head">
-        <p class="label">How it works</p>
+        <p class="label">From quiet to bloom</p>
         <h2>It wakes. <span class="dim">Then it blooms.</span></h2>
       </div>
       <div class="track" id="track">
@@ -409,7 +420,7 @@
   </section>
 
   <section class="wrap section">
-    <p class="label reveal">What makes it different</p>
+    <p class="label reveal">Why it feels different</p>
     <div class="split reveal" style="margin-top:24px">
       <h2 class="idea-head">Not a screen to watch. <span class="dim">A space you play.</span></h2>
       <p>Most LED walls play a video on loop. This one waits for you, reads you, and answers in real time.</p>
@@ -425,7 +436,7 @@
   </section>
 
   <section class="wrap section">
-    <p class="label reveal">Why Realm</p>
+    <p class="label reveal">Where it comes from</p>
     <div class="split reveal" style="margin-top:24px">
       <h2 class="idea-head">One of four pillars.</h2>
       <p>WCCE 2026 stands on four pillars around one centre, the Human. This piece is built from Realm: stepping fully into another world.</p>
@@ -439,7 +450,7 @@
   </section>
 
   <section class="wrap section">
-    <p class="label reveal">Try it now</p>
+    <p class="label reveal">Your turn</p>
     <div class="play-head" style="margin-top:24px">
       <h2>Go on, wake it up.</h2>
       <p class="reveal" style="--d:120ms">The same field as the installation, on your screen. Move across it and the blades rise to meet you.</p>
@@ -451,7 +462,7 @@
   </section>
 
   <section class="wrap section">
-    <p class="label reveal">Where and when</p>
+    <p class="label reveal">Come find it</p>
     <h2 class="reveal" style="margin-top:24px">Two doors in.</h2>
     <div class="grid-2" style="margin-top:48px">
       <article class="place reveal">
@@ -467,15 +478,11 @@
         <p class="place-ig"><a href="https://www.instagram.com/scbdpark/" target="_blank" rel="noopener">@scbdpark</a><a href="https://www.instagram.com/ashtadistrict8/" target="_blank" rel="noopener">@ashtadistrict8</a></p>
       </article>
     </div>
-    <div class="visit reveal">
-      <a class="btn" href="https://wcce.id/registration" target="_blank" rel="noopener">Register for WCCE 2026</a>
-      <p>Free entry. Limited seats. Come curious, bring a friend.</p>
-    </div>
   </section>
 
   <section class="wrap section">
     <div class="credits reveal">
-      <p class="credits-title">Who made it</p>
+      <p class="credits-title">The people behind it</p>
       <p class="credits-co"><a href="https://retrux.com" target="_blank" rel="noopener">Retrux</a></p>
       <dl class="credits-list">
         <div><dt>Creative Director</dt><dd>Faldi</dd></div>
@@ -513,6 +520,10 @@
     <div class="f-legal"><span>© 2026 Retrux Studio</span><span>Presented at WCCE 2026 · #WCCE2026 #InclusivelyCreative</span></div>
   </div>
 </footer>
+
+<button class="sound" id="sound" type="button" aria-pressed="false" aria-label="Turn background sound on" title="Sound on">
+  <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+</button>
 
 <script src="assets/js/lenis.min.js"></script>
 <script>
@@ -617,6 +628,34 @@
         .catch(() => stage.classList.add('touched'));
     }, { rootMargin: '600px 0px' });
     io3.observe(stage);
+  })();
+
+  // Background sound: a calm ambient pad made live in the browser, off until the visitor asks for it
+  (() => {
+    const btn = document.getElementById('sound');
+    let amb = null, on = false;
+    const KEY = 'wcce-sound';
+    const store = (v) => { try { localStorage.setItem(KEY, v); } catch (_) {} };
+    function set(next) {
+      on = next;
+      btn.classList.toggle('on', on);
+      btn.setAttribute('aria-pressed', on);
+      btn.setAttribute('aria-label', on ? 'Turn background sound off' : 'Turn background sound on');
+      btn.title = on ? 'Sound off' : 'Sound on';
+    }
+    async function toggle() {
+      set(!on); store(on ? 'on' : 'off');
+      if (!amb) amb = (await import('./assets/js/ambient.js')).createAmbient();
+      on ? amb.play() : amb.pause();
+    }
+    btn.addEventListener('click', toggle);
+    // Browsers block sound until a gesture, so a returning visitor who left it on hears it after their first tap or key
+    let pref = 'off'; try { pref = localStorage.getItem(KEY) || 'off'; } catch (_) {}
+    if (pref === 'on') {
+      const resume = (e) => { if (e.target.closest && e.target.closest('#sound')) return; if (!on) toggle(); off(); };
+      const off = () => ['pointerdown', 'keydown'].forEach((t) => removeEventListener(t, resume, true));
+      ['pointerdown', 'keydown'].forEach((t) => addEventListener(t, resume, true));
+    }
   })();
 
   // Cursor follower, same as link.retrux.com: a 42px ring and a 4px dot that trail the pointer
