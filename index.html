@@ -189,12 +189,13 @@
     .flow li:not(:last-child)::after { content: "→"; position: absolute; right: -44px; top: 40%; font: 400 24px/1 var(--font); color: var(--dim); }
   }
 
-  /* At a glance: the 5W+1H in one look */
-  .glance { list-style: none; display: grid; margin-top: 48px; }
-  .glance li { display: grid; align-content: start; gap: 4px; padding: 20px 0; border-top: 1px solid var(--line); }
-  .glance .label { margin-bottom: 4px; }
-  .glance p { color: var(--muted); }
-  .glance a { color: var(--soft); border-bottom: 1px solid var(--line); }
+  /* At a glance: the 5W+1H as plain facts, label left, answer right */
+  .glance { margin-top: 48px; border-bottom: 1px solid var(--line); }
+  .glance div { display: grid; grid-template-columns: 72px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+  .glance dt { font: 500 var(--t-label)/2 var(--font); letter-spacing: .08em; color: var(--dim); }
+  .glance dd { font: 500 var(--t-h3)/1.4 var(--font); letter-spacing: -.01em; color: var(--text); }
+  .glance small a { color: var(--soft); border-bottom: 1px solid var(--line); }
+  .glance small { display: block; margin-top: 4px; font: 400 var(--t-label)/1.5 var(--font); letter-spacing: 0; color: var(--muted); }
 
   /* What makes it different */
   .usp { list-style: none; display: grid; margin-top: 64px; counter-reset: usp; }
@@ -303,7 +304,7 @@
     .grid-2 { grid-template-columns: 1fr 1fr; }
     .grid-4 { grid-template-columns: repeat(4, 1fr); }
     .ideas { grid-template-columns: repeat(3, 1fr); gap: 40px; }
-    .glance { grid-template-columns: repeat(3, 1fr); column-gap: 40px; }
+    .glance div { grid-template-columns: 1fr 3fr; gap: 40px; padding: 20px 0; }
     .usp { grid-template-columns: 1fr 1fr; column-gap: 40px; }
     .marquee b { margin: 0 48px; }
     .acts { height: 340svh; }
@@ -363,15 +364,15 @@
 
   <section class="wrap section">
     <p class="label reveal">At a glance</p>
-    <h2 class="reveal what-head" style="margin-top:24px">Everything you need, <span class="dim">before you step in.</span></h2>
-    <ul class="glance">
-      <li class="reveal"><p class="label">What</p><h3>A wall of light that moves with you</h3><p>An interactive LED installation. Walk in front of it and 3D blades rise to meet you.</p></li>
-      <li class="reveal" style="--d:80ms"><p class="label">Who</p><h3>Open to everyone</h3><p>Made by Retrux for WCCE 2026. Any age, any language. If you can move, you can play.</p></li>
-      <li class="reveal" style="--d:160ms"><p class="label">When</p><h3>21 to 25 October 2026</h3><p>WCCE Talks at Kempinski, 21 to 23 Oct. Creativillage at SCBD, 21 to 25 Oct.</p></li>
-      <li class="reveal"><p class="label">Where</p><h3>Two spots in Jakarta</h3><p>Hotel Indonesia Kempinski, and the Art Installation Area at ASHTA District 8, SCBD.</p></li>
-      <li class="reveal" style="--d:80ms"><p class="label">Why</p><h3>Creativity starts in a person</h3><p>The piece does nothing on its own. It only comes alive when people step in.</p></li>
-      <li class="reveal" style="--d:160ms"><p class="label">How</p><h3>Just walk up and move</h3><p>Free entry, no app, no sign up at the wall. Seats for the Talks are limited, <a href="https://wcce.id/registration" target="_blank" rel="noopener">register at wcce.id</a>.</p></li>
-    </ul>
+    <h2 class="reveal what-head" style="margin-top:24px">The facts, <span class="dim">in one look.</span></h2>
+    <dl class="glance reveal">
+      <div><dt>WHAT</dt><dd>Interactive LED installation</dd></div>
+      <div><dt>WHO</dt><dd>By Retrux, for every WCCE 2026 visitor</dd></div>
+      <div><dt>WHEN</dt><dd>21 to 25 Oct 2026<small>Kempinski 21 to 23 Oct · SCBD 21 to 25 Oct</small></dd></div>
+      <div><dt>WHERE</dt><dd>Hotel Indonesia Kempinski<br>ASHTA District 8, SCBD<small>Jakarta, Indonesia</small></dd></div>
+      <div><dt>WHY</dt><dd>Creativity starts in a person</dd></div>
+      <div><dt>HOW</dt><dd>Walk up and move. Free entry.<small><a href="https://wcce.id/registration" target="_blank" rel="noopener">Register at wcce.id/registration</a></small></dd></div>
+    </dl>
   </section>
 
   <section class="wrap section">
