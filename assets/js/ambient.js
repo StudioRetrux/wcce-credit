@@ -13,7 +13,7 @@ const CHORDS = [
 ];
 const BELLS = [74, 76, 78, 81, 83, 86];               // D major pentatonic, up high
 const BAR = 8;
-const VOLUME = 0.7;
+const VOLUME = 0.95;
 
 export function createAmbient() {
   const ctx = new (window.AudioContext || window.webkitAudioContext)();
