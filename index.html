@@ -202,13 +202,14 @@
   .sound { position: fixed; right: calc(var(--gutter) / 2 + 4px); bottom: calc(20px + env(safe-area-inset-bottom)); z-index: 20; width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: rgba(12, 11, 16, .72); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: var(--text); cursor: pointer; transition: border-color .3s, background .3s; }
   .sound:hover { border-color: rgba(255, 255, 255, .32); }
   .sound:focus-visible { outline: 2px solid var(--retrux); outline-offset: 2px; }
-  .sound-bars { display: flex; align-items: center; gap: 3px; height: 16px; }
-  .sound-bars i { width: 2px; height: 2px; border-radius: 2px; background: currentColor; transition: height .4s var(--ease); }
-  .sound.on .sound-bars i { animation: bar 1.2s ease-in-out infinite; }
-  .sound.on .sound-bars i:nth-child(2) { animation-delay: -.4s; }
-  .sound.on .sound-bars i:nth-child(3) { animation-delay: -.8s; }
-  .sound.on .sound-bars i:nth-child(4) { animation-delay: -.2s; }
-  @keyframes bar { 0%, 100% { height: 4px; } 50% { height: 16px; } }
+  /* Off: a flat row of short ticks. On: thin blades ride a travelling wave and tilt, like the installation's ribbon */
+  .sound-bars { display: flex; align-items: center; gap: 1px; height: 24px; }
+  .sound-bars i { width: 2px; height: 2px; border-radius: 1px; background: currentColor; transition: height .5s var(--ease); }
+  .sound.on .sound-bars i { height: 10px; animation: blade 1.8s ease-in-out infinite; animation-delay: calc(var(--n) * -.225s); }
+  @keyframes blade {
+    0%, 100% { transform: translateY(-4px) rotate(-22deg); opacity: 1; }
+    50% { transform: translateY(4px) rotate(22deg); opacity: .5; }
+  }
 
   /* Chapter labels */
   .label { font: 400 var(--t-label)/1.5 var(--font); color: var(--dim); }
@@ -330,7 +331,7 @@
     .panel-media { aspect-ratio: 4 / 3; }
     .dots { display: none; }
     .marquee-track { animation: none; }
-    .sound.on .sound-bars i { animation: none; height: 12px; }
+    .sound.on .sound-bars i { animation: none; height: 10px; }
     .reveal, .media.reveal > img, .media.reveal > video, .collage.reveal .bg img { opacity: 1; transform: none; transition: none; }
     .words .w > span, .collage .piece, .collage .mark { transform: none; opacity: 1; transition: none; }
     .media.reveal { clip-path: none; transition: none; }
@@ -522,7 +523,7 @@
 </footer>
 
 <button class="sound" id="sound" type="button" aria-pressed="false" aria-label="Turn background sound on" title="Sound on">
-  <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <span class="sound-bars" aria-hidden="true"><i style="--n:0"></i><i style="--n:1"></i><i style="--n:2"></i><i style="--n:3"></i><i style="--n:4"></i><i style="--n:5"></i><i style="--n:6"></i><i style="--n:7"></i></span>
 </button>
 
 <script src="assets/js/lenis.min.js"></script>
