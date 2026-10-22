@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Step into the Realm · Retrux × WCCE 2026</title>
-<meta name="description" content="Hundreds of blades, asleep until you arrive. An interactive 3D installation by Retrux for WCCE 2026.">
+<meta name="description" content="An interactive LED installation by Retrux for WCCE 2026. Walk in, move, and the wall moves with you. Free entry at Kempinski and SCBD, Jakarta, 21 to 25 October 2026.">
 <meta name="theme-color" content="#0c0b10">
 <meta property="og:title" content="Step into the Realm · Retrux × WCCE 2026">
-<meta property="og:description" content="Hundreds of blades, asleep until you arrive. Step in and wake the Realm.">
+<meta property="og:description" content="An interactive LED installation that moves with you. Free entry at WCCE 2026, Jakarta.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Retrux">
 <meta property="og:url" content="https://wcce.retrux.com/">
@@ -189,6 +189,24 @@
     .flow li:not(:last-child)::after { content: "→"; position: absolute; right: -44px; top: 40%; font: 400 24px/1 var(--font); color: var(--dim); }
   }
 
+  /* At a glance: the 5W+1H in one look */
+  .glance { list-style: none; display: grid; margin-top: 48px; }
+  .glance li { display: grid; align-content: start; gap: 4px; padding: 20px 0; border-top: 1px solid var(--line); }
+  .glance .label { margin-bottom: 4px; }
+  .glance p { color: var(--muted); }
+  .glance a { color: var(--soft); border-bottom: 1px solid var(--line); }
+
+  /* What makes it different */
+  .usp { list-style: none; display: grid; margin-top: 64px; counter-reset: usp; }
+  .usp li { display: grid; grid-template-columns: 40px 1fr; gap: 0 16px; padding: 24px 0; border-top: 1px solid var(--line); counter-increment: usp; align-content: start; }
+  .usp li > * { grid-column: 2; }
+  .usp li::before { content: counter(usp, decimal-leading-zero); grid-column: 1; grid-row: span 3; font-size: var(--t-label); line-height: 2; color: var(--dim); }
+  .usp p { margin-top: 4px; color: var(--muted); }
+  .usp .tie { margin-top: 8px; font-size: var(--t-label); color: var(--dim); }
+
+  .visit { margin-top: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
+  .visit p { color: var(--muted); font-size: var(--t-label); }
+
   /* Chapter labels */
   .label { font: 400 var(--t-label)/1.5 var(--font); color: var(--dim); }
   .dim { color: var(--muted); }
@@ -285,6 +303,8 @@
     .grid-2 { grid-template-columns: 1fr 1fr; }
     .grid-4 { grid-template-columns: repeat(4, 1fr); }
     .ideas { grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .glance { grid-template-columns: repeat(3, 1fr); column-gap: 40px; }
+    .usp { grid-template-columns: 1fr 1fr; column-gap: 40px; }
     .marquee b { margin: 0 48px; }
     .acts { height: 340svh; }
     .acts-sticky { padding: 112px 0 40px; }
@@ -325,9 +345,9 @@
 
 <main>
   <section class="wrap intro">
-    <p class="eyebrow reveal">Retrux × WCCE 2026 · Interactive LED installation</p>
+    <p class="eyebrow reveal">Retrux × WCCE 2026 · Interactive art installation</p>
     <h1 class="reveal" style="--d:120ms">Step into the Realm, a field of blades that wakes when you arrive.</h1>
-    <p class="tags reveal" style="--d:240ms">Hotel Indonesia Kempinski and SCBD, Jakarta · 21–25 Oct 2026</p>
+    <p class="tags reveal" style="--d:240ms">Free entry · Kempinski and SCBD, Jakarta · 21 to 25 Oct 2026</p>
   </section>
 
   <div class="media hero-media reveal" id="hero">
@@ -336,16 +356,29 @@
 
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>Step in<b>✦</b>Move<b>✦</b>Bring a friend<b>✦</b>Explore<b>✦</b>Cross<b>✦</b>Immerse<b>✦</b></span>
-      <span>Step in<b>✦</b>Move<b>✦</b>Bring a friend<b>✦</b>Explore<b>✦</b>Cross<b>✦</b>Immerse<b>✦</b></span>
+      <span>Come curious<b>✦</b>Step in<b>✦</b>Move<b>✦</b>Bring a friend<b>✦</b>Explore<b>✦</b>Cross<b>✦</b>Immerse<b>✦</b>#WCCE2026<b>✦</b></span>
+      <span>Come curious<b>✦</b>Step in<b>✦</b>Move<b>✦</b>Bring a friend<b>✦</b>Explore<b>✦</b>Cross<b>✦</b>Immerse<b>✦</b>#WCCE2026<b>✦</b></span>
     </div>
   </div>
+
+  <section class="wrap section">
+    <p class="label reveal">At a glance</p>
+    <h2 class="reveal what-head" style="margin-top:24px">Everything you need, <span class="dim">before you step in.</span></h2>
+    <ul class="glance">
+      <li class="reveal"><p class="label">What</p><h3>A wall of light that moves with you</h3><p>An interactive LED installation. Walk in front of it and 3D blades rise to meet you.</p></li>
+      <li class="reveal" style="--d:80ms"><p class="label">Who</p><h3>Open to everyone</h3><p>Made by Retrux for WCCE 2026. Any age, any language. If you can move, you can play.</p></li>
+      <li class="reveal" style="--d:160ms"><p class="label">When</p><h3>21 to 25 October 2026</h3><p>WCCE Talks at Kempinski, 21 to 23 Oct. Creativillage at SCBD, 21 to 25 Oct.</p></li>
+      <li class="reveal"><p class="label">Where</p><h3>Two spots in Jakarta</h3><p>Hotel Indonesia Kempinski, and the Art Installation Area at ASHTA District 8, SCBD.</p></li>
+      <li class="reveal" style="--d:80ms"><p class="label">Why</p><h3>Creativity starts in a person</h3><p>The piece does nothing on its own. It only comes alive when people step in.</p></li>
+      <li class="reveal" style="--d:160ms"><p class="label">How</p><h3>Just walk up and move</h3><p>Free entry, no app, no sign up at the wall. Seats for the Talks are limited, <a href="https://wcce.id/registration" target="_blank" rel="noopener">register at wcce.id</a>.</p></li>
+    </ul>
+  </section>
 
   <section class="wrap section">
     <p class="label reveal">What it is</p>
     <h2 class="reveal what-head" style="margin-top:24px">A wall of light <span class="dim">that watches you move.</span></h2>
     <ol class="flow">
-      <li class="reveal"><span class="flow-n">01</span><div class="media r-4x5"><img src="assets/img/place-scbd.webp" alt="A visitor stands in front of the LED wall at SCBD" loading="lazy" style="object-position:84% 50%"></div><h3>You step in</h3><p>Walk up to the wall. No app, no controller.</p></li>
+      <li class="reveal"><span class="flow-n">01</span><div class="media r-4x5"><img src="assets/img/place-scbd.webp" alt="A visitor walks through the glowing LED corridor at SCBD" loading="lazy" style="object-position:50% 50%"></div><h3>You step in</h3><p>Walk up to the wall. No app, no controller.</p></li>
       <li class="reveal" style="--d:100ms"><span class="flow-n">02</span><div class="media r-4x5"><img src="assets/img/place-kempinski.webp" alt="A visitor in front of the wall at Kempinski" loading="lazy" style="object-position:50% 50%"></div><h3>A camera reads you</h3><p>Body tracking finds where you stand and how you move.</p></li>
       <li class="reveal" style="--d:200ms"><span class="flow-n">03</span><div class="media r-4x5"><img src="assets/img/still-blades.webp" alt="A close view of the 3D blades" loading="lazy"></div><h3>The wall answers</h3><p>3D blades, drawn live, rise and turn to follow you.</p></li>
     </ol>
@@ -355,13 +388,8 @@
     <p class="label reveal">Why we made it</p>
     <div class="split reveal" style="margin-top:24px">
       <h2 class="idea-head"><span class="dim">A machine can make an image.</span> Only you can make a moment.</h2>
-      <p>WCCE 2026, the 5th World Conference on Creative Economy, believes creativity still begins in a person. So we built a piece that does nothing on its own. Hundreds of blades sleep until someone steps in, then the whole field turns to follow them.</p>
+      <p>WCCE 2026, the 5th World Conference on Creative Economy, brings creative minds from 80 nations to Jakarta under one theme: Inclusively Creative, Collective Continuity. We took it literally. Hundreds of blades sleep until someone steps in, then the whole field turns to follow them. The more people join, the more it gives back.</p>
     </div>
-    <ol class="ideas">
-      <li class="reveal"><h3>Your body is the brush</h3><p>No buttons. Just move.</p></li>
-      <li class="reveal" style="--d:100ms"><h3>A world you walk into</h3><p>Realm means stepping into another world.</p></li>
-      <li class="reveal" style="--d:200ms"><h3>Better together</h3><p>One person ripples it. A crowd makes it bloom.</p></li>
-    </ol>
   </section>
 
   <section class="wrap section">
@@ -399,6 +427,22 @@
   </section>
 
   <section class="wrap section">
+    <p class="label reveal">What makes it different</p>
+    <div class="split reveal" style="margin-top:24px">
+      <h2 class="idea-head">Not a screen to watch. <span class="dim">A space you play.</span></h2>
+      <p>Most LED walls play a video on loop. This one waits for you, reads you, and answers in real time.</p>
+    </div>
+    <ol class="usp">
+      <li class="reveal"><h3>Nothing to hold</h3><p>No app, no controller, no QR to scan at the wall. Your body is the input.</p></li>
+      <li class="reveal" style="--d:80ms"><h3>Made for everyone</h3><p>Kids, delegates, first timers. No words on screen, so it speaks every language.</p><p class="tie">Inclusively Creative</p></li>
+      <li class="reveal"><h3>Live, never a loop</h3><p>Every blade is drawn the moment you move, so no two visits look the same.</p></li>
+      <li class="reveal" style="--d:80ms"><h3>A crowd unlocks more</h3><p>Bring friends. Enough people at once and all four pillars bloom into the WCCE 2026 mark.</p><p class="tie">Collective Continuity</p></li>
+      <li class="reveal"><h3>Two venues, one field</h3><p>The same piece lives at Kempinski and in SCBD, so you can catch it twice.</p></li>
+      <li class="reveal" style="--d:80ms"><h3>Take it home</h3><p>Missed it, or want another go? Play the same field below, on your phone or laptop.</p></li>
+    </ol>
+  </section>
+
+  <section class="wrap section">
     <p class="label reveal">Why Realm</p>
     <div class="split reveal" style="margin-top:24px">
       <h2 class="idea-head">One of four pillars.</h2>
@@ -431,15 +475,19 @@
       <article class="place reveal">
         <div class="media r-16x9"><img src="assets/img/place-kempinski.webp" alt="The installation at Kempinski: a visitor stands before the LED wall of blue blades in a chandelier lit lobby" loading="lazy"></div>
         <h3 class="place-name">Kempinski</h3>
-        <span class="note">Hotel Indonesia Kempinski · Conference, 21–23 Oct 2026</span>
+        <span class="note">Hotel Indonesia Kempinski · WCCE Talks, 21 to 23 Oct 2026</span>
         <p class="place-ig"><a href="https://www.instagram.com/hotelindonesia_kempinski/" target="_blank" rel="noopener">@hotelindonesia_kempinski</a><a href="https://www.instagram.com/cgv.id/" target="_blank" rel="noopener">@cgv.id</a></p>
       </article>
       <article class="place reveal" style="--d:120ms">
-        <div class="media r-16x9"><img src="assets/img/place-scbd.webp" alt="The installation at SCBD: a visitor looks up at a long LED wall of blue blades in a concrete hall" loading="lazy"></div>
+        <div class="media r-16x9"><img src="assets/img/place-scbd.webp" alt="The installation at SCBD: a visitor walks down a corridor of LED walls lit with pink and violet waves of blades" loading="lazy"></div>
         <h3 class="place-name">SCBD</h3>
-        <span class="note">SCBD Park and Ashta District 8 · Creativillage, 21–25 Oct 2026</span>
+        <span class="note">Art Installation Area, Corridor GF, ASHTA District 8 · Creativillage, 21 to 25 Oct 2026</span>
         <p class="place-ig"><a href="https://www.instagram.com/scbdpark/" target="_blank" rel="noopener">@scbdpark</a><a href="https://www.instagram.com/ashtadistrict8/" target="_blank" rel="noopener">@ashtadistrict8</a></p>
       </article>
+    </div>
+    <div class="visit reveal">
+      <a class="btn" href="https://wcce.id/registration" target="_blank" rel="noopener">Register for WCCE 2026</a>
+      <p>Free entry. Limited seats. Come curious, bring a friend.</p>
     </div>
   </section>
 
@@ -459,7 +507,7 @@
       </dl>
       <p class="credits-co">Other</p>
       <dl class="credits-list">
-        <div><dt>Creative Leader</dt><dd>Heliandi Fajar Saputra&nbsp;(Ando)</dd><dd>Rangga Wisesha</dd><dd>Maika</dd></div>
+        <div><dt>Creative Leader</dt><dd>H Fajar S&nbsp;(Ando)</dd><dd>Rangga Wisesha</dd><dd>Maika</dd></div>
       </dl>
     </div>
   </section>
@@ -480,7 +528,7 @@
     </div>
     <p class="f-about">Retrux is a creative and development studio building products, brands and now, spaces that move.</p>
     <div class="f-logo"><img src="assets/img/retrux-lockup.svg" alt="retrux" width="2000" height="540" loading="lazy"></div>
-    <div class="f-legal"><span>© 2026 Retrux Studio</span><span>Presented at WCCE 2026</span></div>
+    <div class="f-legal"><span>© 2026 Retrux Studio</span><span>Presented at WCCE 2026 · #WCCE2026 #InclusivelyCreative</span></div>
   </div>
 </footer>
 
