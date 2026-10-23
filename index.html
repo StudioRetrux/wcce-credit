@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Step into the Realm · Retrux × WCCE 2026</title>
-<meta name="description" content="Hundreds of blades, asleep until you arrive. An interactive 3D installation by Retrux for WCCE 2026.">
+<meta name="description" content="An interactive LED installation by Retrux for WCCE 2026. Walk in, move, and the wall moves with you. Free entry at Kempinski and SCBD, Jakarta, 21 to 25 October 2026.">
 <meta name="theme-color" content="#0c0b10">
 <meta property="og:title" content="Step into the Realm · Retrux × WCCE 2026">
-<meta property="og:description" content="Hundreds of blades, asleep until you arrive. Step in and wake the Realm.">
+<meta property="og:description" content="An interactive LED installation that moves with you. Free entry at WCCE 2026, Jakarta.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Retrux">
 <meta property="og:url" content="https://wcce.retrux.com/">
@@ -144,9 +144,10 @@
   /* Locations */
   .place h3 { margin-top: 20px; }
   .place .note { display: inline-block; margin-top: 8px; }
-  .place-ig { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 12px; font-size: var(--t-label); }
-  .place-ig a { color: var(--soft); border-bottom: 1px solid var(--line); transition: color .3s, border-color .3s; }
-  .place-ig a:hover { color: var(--text); border-color: var(--soft); }
+  .dir { display: flex; width: fit-content; align-items: center; gap: 8px; min-height: 44px; margin-top: 20px; padding: 0 20px; border: 1px solid rgba(255, 255, 255, .24); border-radius: 12px; font: 500 16px/1 var(--font); color: var(--text); transition: background .3s, color .3s, border-color .3s; }
+  .dir svg { width: 16px; height: 16px; transition: transform .4s var(--ease); }
+  .dir:hover { background: #fff; border-color: #fff; color: var(--bg); }
+  .dir:hover svg { transform: translate(2px, -2px); }
 
   /* Quote */
   .quote { max-width: 24ch; font: 500 var(--t-quote)/1.15 var(--font); letter-spacing: -.01em; color: var(--text); }
@@ -189,6 +190,32 @@
     .flow li:not(:last-child)::after { content: "→"; position: absolute; right: -44px; top: 40%; font: 400 24px/1 var(--font); color: var(--dim); }
   }
 
+  /* What makes it different */
+  .usp { list-style: none; display: grid; margin-top: 64px; counter-reset: usp; }
+  .usp li { display: grid; grid-template-columns: 40px 1fr; gap: 0 16px; padding: 24px 0; border-top: 1px solid var(--line); counter-increment: usp; align-content: start; }
+  .usp li > * { grid-column: 2; }
+  .usp li::before { content: counter(usp, decimal-leading-zero); grid-column: 1; grid-row: span 3; font-size: var(--t-label); line-height: 2; color: var(--dim); }
+  .usp p { margin-top: 4px; color: var(--muted); }
+  .usp .tie { margin-top: 8px; font-size: var(--t-label); color: var(--dim); }
+
+
+  /* Sound toggle: a quiet round button, bars move while music plays */
+  .sound { position: fixed; right: calc(var(--gutter) / 2 + 4px); bottom: calc(20px + env(safe-area-inset-bottom)); z-index: 20; width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: rgba(12, 11, 16, .72); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: var(--text); cursor: pointer; transition: border-color .3s, background .3s; }
+  .sound:hover { border-color: rgba(255, 255, 255, .32); }
+  /* Waiting for the browser to allow sound: the ring breathes to invite a tap */
+  .sound.wait { animation: invite 2.4s ease-in-out infinite; }
+  @keyframes invite { 0%, 100% { border-color: var(--line); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); } 50% { border-color: rgba(255, 255, 255, .4); box-shadow: 0 0 0 6px rgba(255, 255, 255, .06); } }
+  .sound:focus-visible { outline: 2px solid var(--retrux); outline-offset: 2px; }
+  /* Off: a flat row of short ticks. On: thin blades ride a travelling wave and tilt, like the installation's ribbon */
+  .sound-bars { display: flex; align-items: center; gap: 2px; height: 24px; }
+  .sound-bars i { width: 2px; height: 2px; border-radius: 1px; background: currentColor; transition: height .6s var(--ease); }
+  /* Seven blades share one full wave: each is a seventh of the period behind the last */
+  .sound.on .sound-bars i { height: 12px; animation: blade 2.8s cubic-bezier(.45, 0, .55, 1) infinite; animation-delay: calc(var(--n) * -.4s); }
+  @keyframes blade {
+    0%, 100% { transform: translateY(-3px) rotate(-16deg); opacity: 1; }
+    50% { transform: translateY(3px) rotate(16deg); opacity: .64; }
+  }
+
   /* Chapter labels */
   .label { font: 400 var(--t-label)/1.5 var(--font); color: var(--dim); }
   .dim { color: var(--muted); }
@@ -197,6 +224,7 @@
   /* Three ideas */
   .ideas { list-style: none; display: grid; margin-top: 64px; }
   .ideas li { padding: 20px 0; border-top: 1px solid var(--line); }
+  .ideas .label { display: block; margin-bottom: 12px; }
   .ideas p { margin-top: 4px; color: var(--muted); }
 
   /* Marquee, slow and constant */
@@ -285,6 +313,7 @@
     .grid-2 { grid-template-columns: 1fr 1fr; }
     .grid-4 { grid-template-columns: repeat(4, 1fr); }
     .ideas { grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .usp { grid-template-columns: 1fr 1fr; column-gap: 40px; }
     .marquee b { margin: 0 48px; }
     .acts { height: 340svh; }
     .acts-sticky { padding: 112px 0 40px; }
@@ -308,6 +337,8 @@
     .panel-media { aspect-ratio: 4 / 3; }
     .dots { display: none; }
     .marquee-track { animation: none; }
+    .sound.wait { animation: none; }
+    .sound.on .sound-bars i { animation: none; height: 12px; }
     .reveal, .media.reveal > img, .media.reveal > video, .collage.reveal .bg img { opacity: 1; transform: none; transition: none; }
     .words .w > span, .collage .piece, .collage .mark { transform: none; opacity: 1; transition: none; }
     .media.reveal { clip-path: none; transition: none; }
@@ -325,9 +356,9 @@
 
 <main>
   <section class="wrap intro">
-    <p class="eyebrow reveal">Retrux × WCCE 2026 · Interactive LED installation</p>
-    <h1 class="reveal" style="--d:120ms">Step into the Realm, a field of blades that wakes when you arrive.</h1>
-    <p class="tags reveal" style="--d:240ms">Hotel Indonesia Kempinski and SCBD, Jakarta · 21–25 Oct 2026</p>
+    <p class="eyebrow reveal">Retrux × WCCE 2026 · Interactive installation</p>
+    <h1 class="reveal" style="--d:120ms">Step into the Realm, where the WCCE key visual moves with you.</h1>
+    <p class="tags reveal" style="--d:240ms">Free entry · Kempinski and SCBD, Jakarta · 21 to 25 Oct 2026</p>
   </section>
 
   <div class="media hero-media reveal" id="hero">
@@ -336,31 +367,31 @@
 
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>Step in<b>✦</b>Move<b>✦</b>Bring a friend<b>✦</b>Explore<b>✦</b>Cross<b>✦</b>Immerse<b>✦</b></span>
-      <span>Step in<b>✦</b>Move<b>✦</b>Bring a friend<b>✦</b>Explore<b>✦</b>Cross<b>✦</b>Immerse<b>✦</b></span>
+      <span>Come curious<b>✦</b>Step in<b>✦</b>Move<b>✦</b>Bring a friend<b>✦</b>Explore<b>✦</b>Cross<b>✦</b>Immerse<b>✦</b>#WCCE2026<b>✦</b></span>
+      <span>Come curious<b>✦</b>Step in<b>✦</b>Move<b>✦</b>Bring a friend<b>✦</b>Explore<b>✦</b>Cross<b>✦</b>Immerse<b>✦</b>#WCCE2026<b>✦</b></span>
     </div>
   </div>
 
   <section class="wrap section">
-    <p class="label reveal">What it is</p>
-    <h2 class="reveal what-head" style="margin-top:24px">A wall of light <span class="dim">that watches you move.</span></h2>
+    <p class="label reveal">Say hello to the Realm</p>
+    <div class="split reveal" style="margin-top:24px">
+      <h2 class="what-head">A wall of light <span class="dim">that moves with you.</span></h2>
+      <p>An interactive LED installation by Retrux for WCCE 2026, the 5th World Conference on Creative Economy. Free for every visitor.</p>
+    </div>
     <ol class="flow">
-      <li class="reveal"><span class="flow-n">01</span><div class="media r-4x5"><img src="assets/img/place-scbd.webp" alt="A visitor stands in front of the LED wall at SCBD" loading="lazy" style="object-position:84% 50%"></div><h3>You step in</h3><p>Walk up to the wall. No app, no controller.</p></li>
-      <li class="reveal" style="--d:100ms"><span class="flow-n">02</span><div class="media r-4x5"><img src="assets/img/place-kempinski.webp" alt="A visitor in front of the wall at Kempinski" loading="lazy" style="object-position:50% 50%"></div><h3>A camera reads you</h3><p>Body tracking finds where you stand and how you move.</p></li>
-      <li class="reveal" style="--d:200ms"><span class="flow-n">03</span><div class="media r-4x5"><img src="assets/img/still-blades.webp" alt="A close view of the 3D blades" loading="lazy"></div><h3>The wall answers</h3><p>3D blades, drawn live, rise and turn to follow you.</p></li>
+      <li class="reveal"><span class="flow-n">01</span><div class="media r-4x5"><img src="assets/img/what-step-in.webp" alt="A visitor stands in front of the LED wall at SCBD" loading="lazy" style="object-position:84% 50%"></div><h3>Walk in</h3><p>No app, no gestures. Just walk or stand.</p></li>
+      <li class="reveal" style="--d:100ms"><span class="flow-n">02</span><div class="media r-4x5"><img src="assets/img/place-kempinski.webp" alt="A visitor in front of the wall at Kempinski" loading="lazy" style="object-position:50% 50%"></div><h3>It reads you</h3><p>A camera follows where you are and how you move.</p></li>
+      <li class="reveal" style="--d:200ms"><span class="flow-n">03</span><div class="media r-4x5"><img src="assets/img/still-blades.webp" alt="A close view of the 3D blades" loading="lazy"></div><h3>It rises</h3><p>The 3D key visual lifts and turns with your body, live.</p></li>
     </ol>
   </section>
 
   <section class="wrap section">
-    <p class="label reveal">Why we made it</p>
-    <div class="split reveal" style="margin-top:24px">
-      <h2 class="idea-head"><span class="dim">A machine can make an image.</span> Only you can make a moment.</h2>
-      <p>WCCE 2026, the 5th World Conference on Creative Economy, believes creativity still begins in a person. So we built a piece that does nothing on its own. Hundreds of blades sleep until someone steps in, then the whole field turns to follow them.</p>
-    </div>
+    <p class="label reveal">The idea behind it</p>
+    <h2 class="reveal idea-head" style="margin-top:24px;max-width:22ch">Retrux was challenged to make WCCE <span class="dim">something you can walk into.</span></h2>
     <ol class="ideas">
-      <li class="reveal"><h3>Your body is the brush</h3><p>No buttons. Just move.</p></li>
-      <li class="reveal" style="--d:100ms"><h3>A world you walk into</h3><p>Realm means stepping into another world.</p></li>
-      <li class="reveal" style="--d:200ms"><h3>Better together</h3><p>One person ripples it. A crowd makes it bloom.</p></li>
+      <li class="reveal"><span class="label">01 · The challenge</span><h3>Make it effortless</h3><p>An immersive interaction anyone gets at once. No hands to wave, no rules to learn. You just walk.</p></li>
+      <li class="reveal" style="--d:100ms"><span class="label">02 · The opportunity</span><h3>Bring the key visual to life</h3><p>WCCE already had a strong visual world. We turned its stacking 3D key visual into a living installation.</p></li>
+      <li class="reveal" style="--d:200ms"><span class="label">03 · The idea</span><h3>Design it in two phases</h3><p>One that follows every visitor, and one that only a crowd can unlock.</p></li>
     </ol>
   </section>
 
@@ -377,21 +408,21 @@
   <section id="acts" class="acts">
     <div class="acts-sticky">
       <div class="wrap acts-head">
-        <p class="label">How it works</p>
-        <h2>It wakes. <span class="dim">Then it blooms.</span></h2>
+        <p class="label">How it plays</p>
+        <h2>It follows you. <span class="dim">Then it celebrates.</span></h2>
       </div>
       <div class="track" id="track">
         <article class="panel">
           <div class="panel-media"><img src="assets/img/act-wakes.webp" alt="A ribbon of purple blades twisting awake" loading="lazy"></div>
-          <div class="panel-body"><span class="panel-num">Act I</span><h3>The Realm wakes</h3><p>Walk past and the field stirs, as if it had been waiting for you.</p></div>
+          <div class="panel-body"><span class="panel-num">Phase 1</span><h3>It follows you</h3><p>Walk past or stand still. The stacking key visual rises with your body and movement.</p></div>
         </article>
         <article class="panel">
           <div class="panel-media"><img src="assets/img/act-together.webp" alt="A ring of discs in every pillar colour, joined into one circle" loading="lazy"></div>
-          <div class="panel-body"><span class="panel-num">Act II</span><h3>Everyone, together</h3><p>Enough people, and all four pillars bloom into the WCCE 2026 mark.</p></div>
+          <div class="panel-body"><span class="panel-num">Phase 2</span><h3>The crowd finale</h3><p>When enough people gather, a finale plays and lands on the WCCE 2026 logo.</p></div>
         </article>
         <article class="panel">
           <div class="panel-media"><img src="assets/img/act-rests.webp" alt="Fine blue lines folding into a quiet spiral" loading="lazy"></div>
-          <div class="panel-body"><span class="panel-num">Then</span><h3>It rests</h3><p>The field settles back to sleep, ready for the next crowd.</p></div>
+          <div class="panel-body"><span class="panel-num">Then</span><h3>Back to phase 1</h3><p>The wall settles and waits for whoever comes next.</p></div>
         </article>
       </div>
       <div class="wrap"><div class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div></div>
@@ -399,10 +430,26 @@
   </section>
 
   <section class="wrap section">
-    <p class="label reveal">Why Realm</p>
+    <p class="label reveal">Why it feels different</p>
+    <div class="split reveal" style="margin-top:24px">
+      <h2 class="idea-head">Not a screen to watch. <span class="dim">A space you play.</span></h2>
+      <p>Most LED walls loop a video. This one waits, reads you and answers live.</p>
+    </div>
+    <ol class="usp">
+      <li class="reveal"><h3>Nothing to hold</h3><p>No app, no controller, no gestures. Walking is enough.</p></li>
+      <li class="reveal" style="--d:80ms"><h3>Made for everyone</h3><p>Kids, delegates, first timers. No words on screen, so it speaks every language.</p><p class="tie">Inclusively Creative</p></li>
+      <li class="reveal"><h3>Live, never a loop</h3><p>Drawn the moment you move, so no two visits look the same.</p></li>
+      <li class="reveal" style="--d:80ms"><h3>A crowd unlocks more</h3><p>Bring friends. Enough people at once triggers the finale and the WCCE 2026 logo.</p><p class="tie">Collective Continuity</p></li>
+      <li class="reveal"><h3>Two venues, one field</h3><p>Catch it at Kempinski, then again in SCBD.</p></li>
+      <li class="reveal" style="--d:80ms"><h3>Take it home</h3><p>Play the same field below, on your phone or laptop.</p></li>
+    </ol>
+  </section>
+
+  <section class="wrap section">
+    <p class="label reveal">Where it comes from</p>
     <div class="split reveal" style="margin-top:24px">
       <h2 class="idea-head">One of four pillars.</h2>
-      <p>WCCE 2026 stands on four pillars around one centre, the Human. This piece is built from Realm: stepping fully into another world.</p>
+      <p>WCCE 2026 stands on four pillars around the Human. This piece is built from Realm: stepping fully into another world.</p>
     </div>
     <div class="grid-4" style="margin-top:64px">
       <figure class="captioned reveal"><div class="media r-4x5"><img src="assets/img/pillar-intention.webp" alt="Intention pillar artwork" loading="lazy"></div><h3>Intention</h3><p>Affirm · Direct · Decide</p></figure>
@@ -413,10 +460,10 @@
   </section>
 
   <section class="wrap section">
-    <p class="label reveal">Try it now</p>
+    <p class="label reveal">Your turn</p>
     <div class="play-head" style="margin-top:24px">
       <h2>Go on, wake it up.</h2>
-      <p class="reveal" style="--d:120ms">The same field as the installation, on your screen. Move across it and the blades rise to meet you.</p>
+      <p class="reveal" style="--d:120ms">The installation’s field, on your screen. Move across it and the blades rise to meet you.</p>
     </div>
     <div class="stage reveal" id="stage">
       <canvas id="blades" aria-label="The installation's field of blades, which rises where your cursor or finger moves"></canvas>
@@ -425,27 +472,27 @@
   </section>
 
   <section class="wrap section">
-    <p class="label reveal">Where and when</p>
+    <p class="label reveal">Come find it</p>
     <h2 class="reveal" style="margin-top:24px">Two doors in.</h2>
     <div class="grid-2" style="margin-top:48px">
       <article class="place reveal">
         <div class="media r-16x9"><img src="assets/img/place-kempinski.webp" alt="The installation at Kempinski: a visitor stands before the LED wall of blue blades in a chandelier lit lobby" loading="lazy"></div>
         <h3 class="place-name">Kempinski</h3>
-        <span class="note">Hotel Indonesia Kempinski · Conference, 21–23 Oct 2026</span>
-        <p class="place-ig"><a href="https://www.instagram.com/hotelindonesia_kempinski/" target="_blank" rel="noopener">@hotelindonesia_kempinski</a><a href="https://www.instagram.com/cgv.id/" target="_blank" rel="noopener">@cgv.id</a></p>
+        <span class="note">Hotel Indonesia Kempinski · WCCE Talks, 21 to 23 Oct 2026</span>
+        <a class="dir" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Indonesia+Kempinski+Jakarta" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </article>
       <article class="place reveal" style="--d:120ms">
-        <div class="media r-16x9"><img src="assets/img/place-scbd.webp" alt="The installation at SCBD: a visitor looks up at a long LED wall of blue blades in a concrete hall" loading="lazy"></div>
+        <div class="media r-16x9"><img src="assets/img/place-scbd.webp" alt="The installation at SCBD: a visitor walks down a corridor of LED walls lit with pink and violet waves of blades" loading="lazy"></div>
         <h3 class="place-name">SCBD</h3>
-        <span class="note">SCBD Park and Ashta District 8 · Creativillage, 21–25 Oct 2026</span>
-        <p class="place-ig"><a href="https://www.instagram.com/scbdpark/" target="_blank" rel="noopener">@scbdpark</a><a href="https://www.instagram.com/ashtadistrict8/" target="_blank" rel="noopener">@ashtadistrict8</a></p>
+        <span class="note">Art Installation Area, Corridor GF, ASHTA District 8 · Creativillage, 21 to 25 Oct 2026</span>
+        <a class="dir" href="https://www.google.com/maps/search/?api=1&amp;query=ASHTA+District+8+SCBD+Jakarta" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </article>
     </div>
   </section>
 
   <section class="wrap section">
     <div class="credits reveal">
-      <p class="credits-title">Who made it</p>
+      <p class="credits-title">The people behind it</p>
       <p class="credits-co"><a href="https://retrux.com" target="_blank" rel="noopener">Retrux</a></p>
       <dl class="credits-list">
         <div><dt>Creative Director</dt><dd>Faldi</dd></div>
@@ -459,7 +506,7 @@
       </dl>
       <p class="credits-co">Other</p>
       <dl class="credits-list">
-        <div><dt>Creative Leader</dt><dd>Heliandi Fajar Saputra&nbsp;(Ando)</dd><dd>Rangga Wisesha</dd><dd>Maika</dd></div>
+        <div><dt>Creative Leader</dt><dd>H Fajar S&nbsp;(Ando)</dd><dd>Rangga Wisesha</dd><dd>Maika</dd></div>
       </dl>
     </div>
   </section>
@@ -480,9 +527,13 @@
     </div>
     <p class="f-about">Retrux is a creative and development studio building products, brands and now, spaces that move.</p>
     <div class="f-logo"><img src="assets/img/retrux-lockup.svg" alt="retrux" width="2000" height="540" loading="lazy"></div>
-    <div class="f-legal"><span>© 2026 Retrux Studio</span><span>Presented at WCCE 2026</span></div>
+    <div class="f-legal"><span>© 2026 Retrux Studio</span><span>Presented at WCCE 2026 · #WCCE2026 #InclusivelyCreative</span></div>
   </div>
 </footer>
+
+<button class="sound" id="sound" type="button" aria-pressed="false" aria-label="Turn background sound on" title="Sound on">
+  <span class="sound-bars" aria-hidden="true"><i style="--n:0"></i><i style="--n:1"></i><i style="--n:2"></i><i style="--n:3"></i><i style="--n:4"></i><i style="--n:5"></i><i style="--n:6"></i></span>
+</button>
 
 <script src="assets/js/lenis.min.js"></script>
 <script>
@@ -587,6 +638,42 @@
         .catch(() => stage.classList.add('touched'));
     }, { rootMargin: '600px 0px' });
     io3.observe(stage);
+  })();
+
+  // Background sound: a calm ambient pad made live in the browser. Wanted on by default; the visitor can switch it off.
+  // The wave icon only shows once sound is really playing. Until the browser allows it, the button waits for a tap.
+  (() => {
+    const btn = document.getElementById('sound');
+    const KEY = 'wcce-sound';
+    const GESTURES = ['pointerdown', 'keydown', 'touchend'];
+    let amb = null, state = 'off';   // off | wait | on
+    const store = (v) => { try { localStorage.setItem(KEY, v); } catch (_) {} };
+    const engine = async () => amb || (amb = (await import('./assets/js/ambient.js')).createAmbient());
+    function show(next) {
+      state = next;
+      btn.classList.toggle('on', state === 'on');
+      btn.classList.toggle('wait', state === 'wait');
+      btn.setAttribute('aria-pressed', state === 'on');
+      const label = state === 'on' ? 'Sound off' : 'Sound on';
+      btn.setAttribute('aria-label', state === 'on' ? 'Turn background sound off' : 'Turn background sound on');
+      btn.title = label;
+    }
+    async function start() {
+      const a = amb || await engine();
+      if (await a.play() && state !== 'off') { show('on'); stopWaiting(); }
+    }
+    btn.addEventListener('click', async () => {
+      if (state === 'on') { show('off'); store('off'); stopWaiting(); (await engine()).pause(); return; }
+      show('wait'); store('on'); start();
+    });
+    const kick = (e) => { if (e.target.closest && e.target.closest('#sound')) return; start(); };
+    const stopWaiting = () => GESTURES.forEach((t) => removeEventListener(t, kick, true));
+    let pref = 'on'; try { pref = localStorage.getItem(KEY) || 'on'; } catch (_) {}
+    if (pref === 'on') {
+      show('wait');
+      GESTURES.forEach((t) => addEventListener(t, kick, true));
+      start();   // plays straight away where the browser allows it
+    }
   })();
 
   // Cursor follower, same as link.retrux.com: a 42px ring and a 4px dot that trail the pointer
