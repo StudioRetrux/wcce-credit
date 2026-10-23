@@ -144,9 +144,10 @@
   /* Locations */
   .place h3 { margin-top: 20px; }
   .place .note { display: inline-block; margin-top: 8px; }
-  .place-ig { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 12px; font-size: var(--t-label); }
-  .place-ig a { color: var(--soft); border-bottom: 1px solid var(--line); transition: color .3s, border-color .3s; }
-  .place-ig a:hover { color: var(--text); border-color: var(--soft); }
+  .dir { display: flex; width: fit-content; align-items: center; gap: 8px; min-height: 44px; margin-top: 20px; padding: 0 20px; border: 1px solid rgba(255, 255, 255, .24); border-radius: 12px; font: 500 16px/1 var(--font); color: var(--text); transition: background .3s, color .3s, border-color .3s; }
+  .dir svg { width: 16px; height: 16px; transition: transform .4s var(--ease); }
+  .dir:hover { background: #fff; border-color: #fff; color: var(--bg); }
+  .dir:hover svg { transform: translate(2px, -2px); }
 
   /* Quote */
   .quote { max-width: 24ch; font: 500 var(--t-quote)/1.15 var(--font); letter-spacing: -.01em; color: var(--text); }
@@ -223,6 +224,7 @@
   /* Three ideas */
   .ideas { list-style: none; display: grid; margin-top: 64px; }
   .ideas li { padding: 20px 0; border-top: 1px solid var(--line); }
+  .ideas .label { display: block; margin-bottom: 12px; }
   .ideas p { margin-top: 4px; color: var(--muted); }
 
   /* Marquee, slow and constant */
@@ -354,8 +356,8 @@
 
 <main>
   <section class="wrap intro">
-    <p class="eyebrow reveal">Retrux × WCCE 2026 · Interactive art installation</p>
-    <h1 class="reveal" style="--d:120ms">Step into the Realm, a field of blades that wakes when you arrive.</h1>
+    <p class="eyebrow reveal">Retrux × WCCE 2026 · Interactive installation</p>
+    <h1 class="reveal" style="--d:120ms">Step into the Realm, where the WCCE key visual moves with you.</h1>
     <p class="tags reveal" style="--d:240ms">Free entry · Kempinski and SCBD, Jakarta · 21 to 25 Oct 2026</p>
   </section>
 
@@ -373,22 +375,24 @@
   <section class="wrap section">
     <p class="label reveal">Say hello to the Realm</p>
     <div class="split reveal" style="margin-top:24px">
-      <h2 class="what-head">A wall of light <span class="dim">that watches you move.</span></h2>
-      <p>An interactive LED installation by Retrux for WCCE 2026, the 5th World Conference on Creative Economy. Open to every visitor, free.</p>
+      <h2 class="what-head">A wall of light <span class="dim">that moves with you.</span></h2>
+      <p>An interactive LED installation by Retrux for WCCE 2026, the 5th World Conference on Creative Economy. Free for every visitor.</p>
     </div>
     <ol class="flow">
-      <li class="reveal"><span class="flow-n">01</span><div class="media r-4x5"><img src="assets/img/what-step-in.webp" alt="A visitor stands in front of the LED wall at SCBD" loading="lazy" style="object-position:84% 50%"></div><h3>You step in</h3><p>Walk up to the wall. No app, no controller.</p></li>
-      <li class="reveal" style="--d:100ms"><span class="flow-n">02</span><div class="media r-4x5"><img src="assets/img/place-kempinski.webp" alt="A visitor in front of the wall at Kempinski" loading="lazy" style="object-position:50% 50%"></div><h3>A camera reads you</h3><p>Body tracking finds where you stand and how you move.</p></li>
-      <li class="reveal" style="--d:200ms"><span class="flow-n">03</span><div class="media r-4x5"><img src="assets/img/still-blades.webp" alt="A close view of the 3D blades" loading="lazy"></div><h3>The wall answers</h3><p>3D blades, drawn live, rise and turn to follow you.</p></li>
+      <li class="reveal"><span class="flow-n">01</span><div class="media r-4x5"><img src="assets/img/what-step-in.webp" alt="A visitor stands in front of the LED wall at SCBD" loading="lazy" style="object-position:84% 50%"></div><h3>Walk in</h3><p>No app, no gestures. Just walk or stand.</p></li>
+      <li class="reveal" style="--d:100ms"><span class="flow-n">02</span><div class="media r-4x5"><img src="assets/img/place-kempinski.webp" alt="A visitor in front of the wall at Kempinski" loading="lazy" style="object-position:50% 50%"></div><h3>It reads you</h3><p>A camera follows where you are and how you move.</p></li>
+      <li class="reveal" style="--d:200ms"><span class="flow-n">03</span><div class="media r-4x5"><img src="assets/img/still-blades.webp" alt="A close view of the 3D blades" loading="lazy"></div><h3>It rises</h3><p>The 3D key visual lifts and turns with your body, live.</p></li>
     </ol>
   </section>
 
   <section class="wrap section">
     <p class="label reveal">The idea behind it</p>
-    <div class="split reveal" style="margin-top:24px">
-      <h2 class="idea-head"><span class="dim">A machine can make an image.</span> Only you can make a moment.</h2>
-      <p>WCCE 2026 brings creative minds from 80 nations to Jakarta under one theme: Inclusively Creative, Collective Continuity. We took it literally. Hundreds of blades sleep until someone steps in, then the whole field turns to follow them. The more people join, the more it gives back.</p>
-    </div>
+    <h2 class="reveal idea-head" style="margin-top:24px;max-width:22ch">Retrux was challenged to make WCCE <span class="dim">something you can walk into.</span></h2>
+    <ol class="ideas">
+      <li class="reveal"><span class="label">01 · The challenge</span><h3>Make it effortless</h3><p>An immersive interaction anyone gets at once. No hands to wave, no rules to learn. You just walk.</p></li>
+      <li class="reveal" style="--d:100ms"><span class="label">02 · The opportunity</span><h3>Bring the key visual to life</h3><p>WCCE already had a strong visual world. We turned its stacking 3D key visual into a living installation.</p></li>
+      <li class="reveal" style="--d:200ms"><span class="label">03 · The idea</span><h3>Design it in two phases</h3><p>One that follows every visitor, and one that only a crowd can unlock.</p></li>
+    </ol>
   </section>
 
   <section class="wrap section">
@@ -404,21 +408,21 @@
   <section id="acts" class="acts">
     <div class="acts-sticky">
       <div class="wrap acts-head">
-        <p class="label">From quiet to bloom</p>
-        <h2>It wakes. <span class="dim">Then it blooms.</span></h2>
+        <p class="label">How it plays</p>
+        <h2>It follows you. <span class="dim">Then it celebrates.</span></h2>
       </div>
       <div class="track" id="track">
         <article class="panel">
           <div class="panel-media"><img src="assets/img/act-wakes.webp" alt="A ribbon of purple blades twisting awake" loading="lazy"></div>
-          <div class="panel-body"><span class="panel-num">Act I</span><h3>The Realm wakes</h3><p>Walk past and the field stirs, as if it had been waiting for you.</p></div>
+          <div class="panel-body"><span class="panel-num">Phase 1</span><h3>It follows you</h3><p>Walk past or stand still. The stacking key visual rises with your body and movement.</p></div>
         </article>
         <article class="panel">
           <div class="panel-media"><img src="assets/img/act-together.webp" alt="A ring of discs in every pillar colour, joined into one circle" loading="lazy"></div>
-          <div class="panel-body"><span class="panel-num">Act II</span><h3>Everyone, together</h3><p>Enough people, and all four pillars bloom into the WCCE 2026 mark.</p></div>
+          <div class="panel-body"><span class="panel-num">Phase 2</span><h3>The crowd finale</h3><p>When enough people gather, a finale plays and lands on the WCCE 2026 logo.</p></div>
         </article>
         <article class="panel">
           <div class="panel-media"><img src="assets/img/act-rests.webp" alt="Fine blue lines folding into a quiet spiral" loading="lazy"></div>
-          <div class="panel-body"><span class="panel-num">Then</span><h3>It rests</h3><p>The field settles back to sleep, ready for the next crowd.</p></div>
+          <div class="panel-body"><span class="panel-num">Then</span><h3>Back to phase 1</h3><p>The wall settles and waits for whoever comes next.</p></div>
         </article>
       </div>
       <div class="wrap"><div class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div></div>
@@ -429,15 +433,15 @@
     <p class="label reveal">Why it feels different</p>
     <div class="split reveal" style="margin-top:24px">
       <h2 class="idea-head">Not a screen to watch. <span class="dim">A space you play.</span></h2>
-      <p>Most LED walls play a video on loop. This one waits for you, reads you, and answers in real time.</p>
+      <p>Most LED walls loop a video. This one waits, reads you and answers live.</p>
     </div>
     <ol class="usp">
-      <li class="reveal"><h3>Nothing to hold</h3><p>No app, no controller, no QR to scan at the wall. Your body is the input.</p></li>
+      <li class="reveal"><h3>Nothing to hold</h3><p>No app, no controller, no gestures. Walking is enough.</p></li>
       <li class="reveal" style="--d:80ms"><h3>Made for everyone</h3><p>Kids, delegates, first timers. No words on screen, so it speaks every language.</p><p class="tie">Inclusively Creative</p></li>
-      <li class="reveal"><h3>Live, never a loop</h3><p>Every blade is drawn the moment you move, so no two visits look the same.</p></li>
-      <li class="reveal" style="--d:80ms"><h3>A crowd unlocks more</h3><p>Bring friends. Enough people at once and all four pillars bloom into the WCCE 2026 mark.</p><p class="tie">Collective Continuity</p></li>
-      <li class="reveal"><h3>Two venues, one field</h3><p>The same piece lives at Kempinski and in SCBD, so you can catch it twice.</p></li>
-      <li class="reveal" style="--d:80ms"><h3>Take it home</h3><p>Missed it, or want another go? Play the same field below, on your phone or laptop.</p></li>
+      <li class="reveal"><h3>Live, never a loop</h3><p>Drawn the moment you move, so no two visits look the same.</p></li>
+      <li class="reveal" style="--d:80ms"><h3>A crowd unlocks more</h3><p>Bring friends. Enough people at once triggers the finale and the WCCE 2026 logo.</p><p class="tie">Collective Continuity</p></li>
+      <li class="reveal"><h3>Two venues, one field</h3><p>Catch it at Kempinski, then again in SCBD.</p></li>
+      <li class="reveal" style="--d:80ms"><h3>Take it home</h3><p>Play the same field below, on your phone or laptop.</p></li>
     </ol>
   </section>
 
@@ -445,7 +449,7 @@
     <p class="label reveal">Where it comes from</p>
     <div class="split reveal" style="margin-top:24px">
       <h2 class="idea-head">One of four pillars.</h2>
-      <p>WCCE 2026 stands on four pillars around one centre, the Human. This piece is built from Realm: stepping fully into another world.</p>
+      <p>WCCE 2026 stands on four pillars around the Human. This piece is built from Realm: stepping fully into another world.</p>
     </div>
     <div class="grid-4" style="margin-top:64px">
       <figure class="captioned reveal"><div class="media r-4x5"><img src="assets/img/pillar-intention.webp" alt="Intention pillar artwork" loading="lazy"></div><h3>Intention</h3><p>Affirm · Direct · Decide</p></figure>
@@ -459,7 +463,7 @@
     <p class="label reveal">Your turn</p>
     <div class="play-head" style="margin-top:24px">
       <h2>Go on, wake it up.</h2>
-      <p class="reveal" style="--d:120ms">The same field as the installation, on your screen. Move across it and the blades rise to meet you.</p>
+      <p class="reveal" style="--d:120ms">The installation’s field, on your screen. Move across it and the blades rise to meet you.</p>
     </div>
     <div class="stage reveal" id="stage">
       <canvas id="blades" aria-label="The installation's field of blades, which rises where your cursor or finger moves"></canvas>
@@ -475,13 +479,13 @@
         <div class="media r-16x9"><img src="assets/img/place-kempinski.webp" alt="The installation at Kempinski: a visitor stands before the LED wall of blue blades in a chandelier lit lobby" loading="lazy"></div>
         <h3 class="place-name">Kempinski</h3>
         <span class="note">Hotel Indonesia Kempinski · WCCE Talks, 21 to 23 Oct 2026</span>
-        <p class="place-ig"><a href="https://www.instagram.com/hotelindonesia_kempinski/" target="_blank" rel="noopener">@hotelindonesia_kempinski</a><a href="https://www.instagram.com/cgv.id/" target="_blank" rel="noopener">@cgv.id</a></p>
+        <a class="dir" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Indonesia+Kempinski+Jakarta" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </article>
       <article class="place reveal" style="--d:120ms">
         <div class="media r-16x9"><img src="assets/img/place-scbd.webp" alt="The installation at SCBD: a visitor walks down a corridor of LED walls lit with pink and violet waves of blades" loading="lazy"></div>
         <h3 class="place-name">SCBD</h3>
         <span class="note">Art Installation Area, Corridor GF, ASHTA District 8 · Creativillage, 21 to 25 Oct 2026</span>
-        <p class="place-ig"><a href="https://www.instagram.com/scbdpark/" target="_blank" rel="noopener">@scbdpark</a><a href="https://www.instagram.com/ashtadistrict8/" target="_blank" rel="noopener">@ashtadistrict8</a></p>
+        <a class="dir" href="https://www.google.com/maps/search/?api=1&amp;query=ASHTA+District+8+SCBD+Jakarta" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </article>
     </div>
   </section>
